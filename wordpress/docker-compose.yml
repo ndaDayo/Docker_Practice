@@ -15,9 +15,13 @@ services:
 
   db:
     image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_DATABASE: wpdatabase
       MYSQL_USER: wpuser
       MYSQL_PASSWORD: secret
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
+volumes:
+  db_data:
