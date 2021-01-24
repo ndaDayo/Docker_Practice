@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  database:
+    image: mysql:latest
+    container_name: nda_database
+    volumes:
+      - db_volume:/var/lib/mysql
+      - ./docker/db/dev.cnf:/etc/mysql/conf.d/dev.cnf:cached
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nda_database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
+
+volumes:
+  db_volume:
+    driver: local

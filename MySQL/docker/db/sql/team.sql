@@ -1,0 +1,1 @@
+create table team  (id int, name varchar(10));
